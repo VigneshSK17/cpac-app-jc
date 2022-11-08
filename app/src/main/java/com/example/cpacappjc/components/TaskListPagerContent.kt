@@ -21,21 +21,22 @@ data class TaskListPagerContent(
 fun getTaskLists(): List<List<Task>> {
 
     val taskList1 = listOf(Task(
-        parentList = "Hi",
+        parentList = "List1",
         title = "Hello",
         timestamp = "123456",
     ))
 
     val taskList2 = listOf(
         Task(
-            parentList = "Hi",
+            parentList = "List2",
             title = "Hello",
             timestamp = "123456",
         ),
         Task(
-            parentList = "Hi",
+            parentList = "List2",
             title = "Hola",
             timestamp = "654321",
+            completed = true
         )
     )
 
@@ -76,30 +77,7 @@ fun TaskListPagerScreen() {
             state = pagerState,
             modifier = Modifier.weight(1f),
         ) { currentPage ->
-
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .padding(16.dp)
-//            ) {
-//                Text(
-//                    text = items[currentPage].title,
-//                    style = MaterialTheme.typography.h2
-//                )
-//                Spacer(modifier = Modifier.height(10.dp))
-//                Text(
-//                    text = items[currentPage].tasks.map { task -> task.title }.joinToString(),
-//                    style = MaterialTheme.typography.h4
-//                )
-//            }
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                TasksContent(tasks = items[currentPage].tasks)
-            }
-
+            TasksContent(currentPage)
         }
 
 //        Button(
